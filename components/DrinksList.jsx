@@ -1,7 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 export default function DrinksList({ drinks }) {
   return (
-    <ul className="menu menu-vertical pl-0">
+    <ul className="grid sm:grid-cols-2 gap-6 mt-6">
       {drinks.map((drink) => {
         return (
           <li key={drink.idDrink}>
@@ -9,6 +10,15 @@ export default function DrinksList({ drinks }) {
               href={`/drinks/${drink.idDrink}`}
               className="text-xl font-medium"
             >
+              <div className="relative h-48 mb-4">
+                <Image
+                  src={drink.strDrinkThumb}
+                  fill
+                  sizes="max-width:768px 100vw, (max-width:1200px) 50vw"
+                  alt={drink.strDrink}
+                  className="rounded-md object-cover"
+                />
+              </div>
               {drink.strDrink}
             </Link>
           </li>
@@ -17,3 +27,23 @@ export default function DrinksList({ drinks }) {
     </ul>
   );
 }
+
+// import Link from "next/link";
+// export default function DrinksList({ drinks }) {
+//   return (
+//     <ul className="menu menu-vertical pl-0">
+//       {drinks.map((drink) => {
+//         return (
+//           <li key={drink.idDrink}>
+//             <Link
+//               href={`/drinks/${drink.idDrink}`}
+//               className="text-xl font-medium"
+//             >
+//               {drink.strDrink}
+//             </Link>
+//           </li>
+//         );
+//       })}
+//     </ul>
+//   );
+// }
