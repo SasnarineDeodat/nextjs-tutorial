@@ -1,4 +1,13 @@
-import { createTask } from "@/utils/actions";
+const createTask = async (formData) => {
+  "use server";
+  const content = formData.get("content");
+  await prisma.task.create({
+    data: {
+      content,
+    },
+  });
+  revalidatePath("/tasks");
+};
 
 export default function TaskForm() {
   return (
